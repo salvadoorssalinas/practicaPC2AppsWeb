@@ -3,7 +3,7 @@ using si730pc2u20221b127.API.Subscriptions.Interfaces.REST.Resources;
 
 namespace si730pc2u20221b127.API.Subscriptions.Interfaces.REST.Transform;
 
-public class UpdatePlanCommandFromResourceAssembler
+public static class UpdatePlanCommandFromResourceAssembler
 {
     public static UpdatePlanCommand ToCommandFromResource(UpdatePlanResource resource, int planId)
     {

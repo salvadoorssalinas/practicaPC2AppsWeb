@@ -43,14 +43,14 @@ builder.Services.AddSwaggerGen(
     {
         c.SwaggerDoc("v1",new OpenApiInfo
             {
-                Title = "si730pc2u20221b127.API",
+                Title = "SI730PC2u20221B127.API",
                 Version = "v1",
                 Description = "SI730PC2U20221B127 API",
                 TermsOfService = new Uri("https://si730-pc2.com/tos"),
                 Contact = new OpenApiContact
                 {
-                    Name = "U20221B127 Studios",
-                    Email = "u20221b127@upc.edu.pe"
+                    Name = "ACME Studios",
+                    Email = "acme@domain.com"
                 },
                 License = new OpenApiLicense
                 {

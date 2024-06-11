@@ -16,4 +16,14 @@ public class PlanQueryService(IPlanRepository planRepository) : IPlanQueryServic
     {
         return await planRepository.FindByIdAsync(query.Id);
     }
+    
+    public async Task<Plan?> Handle(GetPlanByNameQuery query)
+    {
+        return await planRepository.FindByNameAsync(query.Name);
+    }
+    
+    public async Task<Plan?> Handle(GetPlanByIsDefaultQuery query)
+    {
+        return await planRepository.FindByIsDefaultAsync(query.IsDefault);
+    }
 }

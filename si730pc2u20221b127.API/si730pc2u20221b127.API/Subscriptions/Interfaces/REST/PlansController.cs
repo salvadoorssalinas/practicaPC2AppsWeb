@@ -17,6 +17,12 @@ public class PlansController(IPlanCommandService planCommandService, IPlanQueryS
     {
         try
         {
+            var existingPlan = await planQueryService.Handle(new GetPlanByNameQuery(createPlanResource.Name));
+            if (existingPlan != null) return BadRequest(new { message = "A plan with the same name already exists." });
+            
+            var defaultPlan = await planQueryService.Handle(new GetPlanByIsDefaultQuery(1));
+            if (defaultPlan != null && createPlanResource.IsDefault == 1) return BadRequest(new { message = "A default plan already exists." });
+            
             var createPlanCommand = CreatePlanCommandFromResourceAssembler.ToCommandFromResource(createPlanResource);
             var plan = await planCommandService.Handle(createPlanCommand);
             if (plan == null) return BadRequest();
@@ -27,7 +33,7 @@ public class PlansController(IPlanCommandService planCommandService, IPlanQueryS
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return BadRequest(new { message = "An error occurred while creating the user. " + e.Message });
+            return BadRequest(new { message = "An error occurred while creating the plan. " + e.Message });
         }
         
     }
@@ -47,7 +53,7 @@ public class PlansController(IPlanCommandService planCommandService, IPlanQueryS
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return BadRequest(new { message = "An error occurred while updating the user. " + e.Message });
+            return BadRequest(new { message = "An error occurred while updating the plan. " + e.Message });
         }
     }
 

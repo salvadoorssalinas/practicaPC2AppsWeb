@@ -5,5 +5,6 @@ namespace si730pc2u20221b127.API.Subscriptions.Domain.Repositories;
 
 public interface IPlanRepository : IBaseRepository<Plan>
 {
-    
+    Task<Plan?> FindByNameAsync(String name);
+    Task<Plan?> FindByIsDefaultAsync(int isDefault);
 }
